@@ -22,7 +22,7 @@ export default function Header(props: any) {
 
                 {headerContext.documentation &&
                     <div>
-                        <h2 className="w-full font-bold m-2">{props.title || "Documentation"} </h2>
+                        <h2 className="w-full font-bold m-2">{props.title || "Documentation"}</h2>
                         <ul className={htmlStyle}>
                             <li className='m-1 italic'><a href="#">Component Creation</a></li>
                             <li className='m-1 italic'><a href="https://tailwindcss.com/" target='_blank'>Tailwind Documentation</a></li>
