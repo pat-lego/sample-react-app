@@ -1,7 +1,7 @@
 import logo from './assets/logo.svg';
 import './App.css';
-import Header from './components/header';
-import { header, HeaderContext } from './components/headerContext';
+import Header from './components/Header/Header';
+import { header, HeaderContext } from './components/Header/HeaderContext';
 
 function App() {
   return (
