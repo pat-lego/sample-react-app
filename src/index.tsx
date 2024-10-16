@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './views/main/App';
+import ToDo from './views/todo/ToDo';
 import Error from './components/Error/Error';
-import ToDo from './components/Todo/Todo';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HeaderContext, header } from './components/Header/HeaderContext';
+import Header from './components/Header/Header';
+import AddToDo from './components/Todo/AddToDo';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <HeaderContext.Provider value={header}>
+      <Header title="Documentation"></Header>
+    </HeaderContext.Provider>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App/>}/>

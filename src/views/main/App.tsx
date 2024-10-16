@@ -1,15 +1,9 @@
-import logo from './assets/logo.svg';
+import logo from '../../assets/logo.svg';
 import './App.css';
-import Header from './components/Header/Header';
-import { header, HeaderContext } from './components/Header/HeaderContext';
 
 function App() {
   return (
     <div className="App">
-      <HeaderContext.Provider value={header}>
-        <Header title="Documentation"></Header>
-      </HeaderContext.Provider>
-
       <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

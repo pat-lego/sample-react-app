@@ -26,6 +26,7 @@ export default function Header(props: any) {
                         <ul className={htmlStyle}>
                             <li className='m-1 italic'><a href="#">Component Creation</a></li>
                             <li className='m-1 italic'><a href="https://tailwindcss.com/" target="_blank" rel="noreferrer">Tailwind Documentation</a></li>
+                            <li className='m-1 italic'><a href="/todo">ToDo</a></li>
                         </ul>
                     </div>
                 }
