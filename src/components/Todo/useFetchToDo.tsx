@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
-export const useFetchToDo = (url: string)  => {
-    const [data, setData] = useState([]);
+export const useFetchToDo = (url: string, setData: Function, responseData: React.MutableRefObject<any[]>)  => {
     useEffect(() => {
         try {
             fetch(url)
                 .then((res) => res.json())
-                .then((data) => setData(data))
+                .then((data) => {
+                    responseData.current = data;
+                    setData(data);
+                })
                 .catch((reason) => {
                     console.error("Caught rejection in useFetch", reason);
                 })
@@ -14,6 +16,5 @@ export const useFetchToDo = (url: string)  => {
             console.error("Caught runtime error in useFetch", e);
         }
 
-    }, [url]);
-    return data;
+    }, [setData, url, responseData]);
 }

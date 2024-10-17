@@ -1,13 +1,29 @@
-import { useState } from "react";
-import { useFetchToDo } from "./useFetchToDo"
+import { useCallback, useRef, useState } from "react";
+import { useFetchToDo } from "./useFetchToDo";
 
-
-const baseUrl = 'https://jsonplaceholder.typicode.com/todos';
 
 export default function Table() {
-    const [url, setUrl] = useState(baseUrl);
-    const data = useFetchToDo(url);
-   
+    let responseData = useRef([] as any[]);
+    const [filterString, setFilterString] = useState('');
+    const [filteredData, setFilteredData] = useState([] as any[]);
+
+    useFetchToDo('https://jsonplaceholder.typicode.com/todos', setFilteredData, responseData);
+    
+    const filterTable = useCallback((e: string) => {
+        setFilterString(e);
+        if (e.length >= 3) {
+            const tempData: any[] = [];
+            responseData.current.map((i: any) => {
+                if (JSON.stringify(i).includes(e)) {
+                    tempData.push(i);
+                }
+            });
+            setFilteredData(tempData);
+        } else {
+            setFilteredData(responseData.current);
+        }
+    }, []);
+
     return (
         <div className="flex flex-col justify-center m-5">
             <table className="table-auto">
@@ -19,7 +35,10 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item, index) => <TableRow userId={item['userId']} title={item['title']} completed={item['completed']} index={index} />)}
+                    <tr>
+                        <td><input className="w-full" type="text" placeholder="Filter table...."  value={filterString} onChange={(e) => filterTable(e.target.value)} /></td>
+                    </tr>
+                    {filteredData.map((item, index) => <TableRow userId={item['userId']} title={item['title']} completed={item['completed']} index={index} />)}
                 </tbody>
             </table>
         </div>
