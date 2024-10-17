@@ -12,17 +12,12 @@ export default function Table() {
     const filterTable = useCallback((e: string) => {
         setFilterString(e);
         if (e.length >= 3) {
-            const tempData: any[] = [];
-            responseData.current.map((i: any) => {
-                if (JSON.stringify(i).includes(e)) {
-                    tempData.push(i);
-                }
-            });
+             const tempData:any[] = responseData.current.filter((i: any) => JSON.stringify(i).includes(e));
             setFilteredData(tempData);
         } else {
             setFilteredData(responseData.current);
         }
-    }, []);
+    }, [setFilteredData]);
 
     return (
         <div className="flex flex-col justify-center m-5">
